@@ -20,4 +20,8 @@ export const editUserService = (data) => {
   return axios.put('/api/edit-user', data);
 };
 
+export const getAllCodeService = (inputType) => {
+  return axios.get(`/api/allcode?type=${inputType}`);
+};
+
 export default handleLoginApi;
