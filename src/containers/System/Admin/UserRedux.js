@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
-import { LANGUAGES, CRUD_ACTIONS } from '../../../utils';
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../utils';
 import * as actions from '../../../store/actions';
 import './UserRedux.scss';
 
@@ -38,14 +38,15 @@ class UserRedux extends Component {
     this.props.getRoleStart();
   }
 
-  handleOnchangeImg = (e) => {
+  handleOnchangeImg = async (e) => {
     let data = e.target.files;
     let file = data[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgURL: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
   };
@@ -103,6 +104,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         role: this.state.role,
         position: this.state.position,
+        avatar: this.state.avatar,
       });
     }
 
@@ -134,11 +136,16 @@ class UserRedux extends Component {
       position: '',
       role: '',
       avatar: '',
+      previewImgURL: '',
       action: CRUD_ACTIONS.CREATE,
     });
   };
 
   handleEditUserFromParent = (user) => {
+    let imageBase64 = '';
+    if (user.image) {
+      imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+    }
     this.setState({
       email: user.email,
       password: 'HARDCOE',
@@ -150,6 +157,7 @@ class UserRedux extends Component {
       position: user.positionId,
       role: user.roleId,
       avatar: '',
+      previewImgURL: imageBase64,
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id,
     });
