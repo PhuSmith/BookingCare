@@ -276,7 +276,7 @@ class UserRedux extends Component {
                     <option selected>Choose...</option>
                     {genders?.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -297,7 +297,7 @@ class UserRedux extends Component {
                     <option selected>Choose...</option>;
                     {positions?.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -318,7 +318,7 @@ class UserRedux extends Component {
                     <option selected>Choose...</option>
                     {roles?.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
