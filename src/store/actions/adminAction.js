@@ -7,6 +7,8 @@ import {
   deleteUserService,
   editUserService,
   getTopDoctorHomeService,
+  getAllDoctorsService,
+  saveDetailDoctorService,
 } from '../../services/userService';
 
 export const fetchGenderApi = () => {
@@ -218,6 +220,52 @@ export const getTopDoctorsApi = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+export const getAllDoctorsApi = () => {
+  return async (dispatch) => {
+    try {
+      let res = await getAllDoctorsService();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+          payload: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+export const saveDetailDoctorApi = (data) => {
+  return async (dispatch) => {
+    try {
+      let res = await saveDetailDoctorService(data);
+      if (res && res.errCode === 0) {
+        toast.success('Save doctor detail succeed!');
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+        });
+      } else {
+        toast.error('Save doctor detail error!');
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+        });
+      }
+    } catch (e) {
+      toast.error('Save doctor detail error!');
+      dispatch({
+        type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
       });
     }
   };
