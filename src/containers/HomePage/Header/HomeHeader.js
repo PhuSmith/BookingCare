@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../utils';
@@ -17,9 +18,9 @@ class HomeHeader extends Component {
         <div className="home-header-content">
           <div className="left-content">
             <i className="fas fa-bars"></i>
-            <div className="header-logo">
+            <Link to="/home" className="header-logo">
               <img src={logo} alt="" />
-            </div>
+            </Link>
           </div>
           <div className="center-content">
             <div className="child-content">

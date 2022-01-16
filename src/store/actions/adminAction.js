@@ -9,6 +9,7 @@ import {
   getTopDoctorHomeService,
   getAllDoctorsService,
   saveDetailDoctorService,
+  getDetailDoctorsService,
 } from '../../services/userService';
 
 export const fetchGenderApi = () => {
@@ -266,6 +267,28 @@ export const saveDetailDoctorApi = (data) => {
       toast.error('Save doctor detail error!');
       dispatch({
         type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+
+export const getDetailDoctorApi = (id) => {
+  return async (dispatch) => {
+    try {
+      let res = await getDetailDoctorsService(id);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+          payload: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
       });
     }
   };

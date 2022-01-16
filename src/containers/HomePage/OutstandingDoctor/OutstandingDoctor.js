@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { connect } from 'react-redux';
@@ -39,7 +40,11 @@ class OutstandingDoctor extends Component {
                 let nameVi = `${doctor.positionData.valueVi}, ${doctor.lastName} ${doctor.firstName}`;
                 let nameEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`;
                 return (
-                  <div className="section-item" key={index}>
+                  <Link
+                    to={`/detail-doctor/${doctor.id}`}
+                    className="section-item"
+                    key={index}
+                  >
                     <div className="outer-bg">
                       <div
                         className="bg-img section-outstanding-doctor"
@@ -50,7 +55,7 @@ class OutstandingDoctor extends Component {
                       <h3>{language === LANGUAGES.VI ? nameVi : nameEn}</h3>
                       <p>Cơ xương khớp</p>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </Slider>
