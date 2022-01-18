@@ -53,6 +53,12 @@ class Login extends Component {
     });
   };
 
+  handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      this.handleLogin();
+    }
+  };
+
   render() {
     const { username, password, isShowPassword, errMessage } = this.state;
     return (
@@ -84,6 +90,9 @@ class Login extends Component {
                   value={password}
                   onChange={(e) => {
                     this.handleOnChangeInput(e);
+                  }}
+                  onKeyDown={(e) => {
+                    this.handleKeyDown(e);
                   }}
                 />
                 <span

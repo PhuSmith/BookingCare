@@ -293,3 +293,25 @@ export const getDetailDoctorApi = (id) => {
     }
   };
 };
+
+export const getAllScheduleTimeApi = () => {
+  return async (dispatch) => {
+    try {
+      let res = await getAllCodeService('TIME');
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          payload: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+      });
+    }
+  };
+};
