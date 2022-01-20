@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from '../HomePage/Header/HomeHeader';
+import DoctorSchedule from './DoctorSchedule/DoctorSchedule';
 import * as actions from '../../store/actions';
 import { LANGUAGES } from '../../utils';
 import './DetailDoctor.scss';
@@ -24,7 +25,6 @@ class DetailDoctor extends Component {
     return (
       <>
         <HomeHeader />
-
         <div className="doctor-detail-container ">
           <div className="intro-doctor container">
             <div
@@ -38,7 +38,14 @@ class DetailDoctor extends Component {
               <p className="down">{detailDoctor?.Markdown?.description}</p>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor container">
+            <div className="row">
+              <div className="content-left col-6">
+                <DoctorSchedule />
+              </div>
+              <div className="content-right col-6"></div>
+            </div>
+          </div>
           <div className="detail-infor-doctor">
             <div
               className="container"
