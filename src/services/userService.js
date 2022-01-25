@@ -50,4 +50,8 @@ export const getScheduleDoctorsService = (doctorId, date) => {
   );
 };
 
+export const getExtraInforDoctorsService = (doctorId) => {
+  return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
+};
+
 export default handleLoginApi;

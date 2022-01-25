@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from '../HomePage/Header/HomeHeader';
 import DoctorSchedule from './DoctorSchedule/DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor/DoctorExtraInfor';
 import * as actions from '../../store/actions';
 import { LANGUAGES } from '../../utils';
 import './DetailDoctor.scss';
@@ -19,7 +20,6 @@ class DetailDoctor extends Component {
 
   render() {
     const { detailDoctor, language } = this.props;
-    console.log(detailDoctor);
     let nameVi = `${detailDoctor.positionData?.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
     let nameEn = `${detailDoctor.positionData?.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     return (
@@ -43,7 +43,9 @@ class DetailDoctor extends Component {
               <div className="content-left col-6">
                 <DoctorSchedule />
               </div>
-              <div className="content-right col-6"></div>
+              <div className="content-right col-6">
+                <DoctorExtraInfor />
+              </div>
             </div>
           </div>
           <div className="detail-infor-doctor">
