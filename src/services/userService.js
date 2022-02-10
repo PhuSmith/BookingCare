@@ -54,4 +54,12 @@ export const getExtraInforDoctorsService = (doctorId) => {
   return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
 };
 
+export const getProfileDoctorsService = (doctorId) => {
+  return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}`);
+};
+
+export const postPatientBookAppointmentService = (data) => {
+  return axios.post('/api/patient-book-appointment', data);
+};
+
 export default handleLoginApi;
