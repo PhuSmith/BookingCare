@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import { getAllSpecialtyService } from '../../../services/userService';
 import './Specialty.scss';
 
@@ -38,13 +39,17 @@ export default class Specialty extends Component {
             <Slider {...this.props.settings}>
               {dataSpecialty?.map((item) => {
                 return (
-                  <div className="section-item specialty-child" key={item.id}>
+                  <Link
+                    className="section-item specialty-child"
+                    key={item.id}
+                    to={`/detail-specialty/${item.id}`}
+                  >
                     <div
                       className="bg-img section-specialty"
                       style={{ backgroundImage: `url(${item.image})` }}
                     />
                     <h3 className="specialty-name">{item.name}</h3>
-                  </div>
+                  </Link>
                 );
               })}
             </Slider>

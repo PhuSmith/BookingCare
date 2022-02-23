@@ -74,4 +74,10 @@ export const getAllSpecialtyService = () => {
   return axios.get(`/api/get-all-specialty`);
 };
 
+export const getAllDetailSpecialtyByIdService = (data) => {
+  return axios.get(
+    `/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`
+  );
+};
+
 export default handleLoginApi;

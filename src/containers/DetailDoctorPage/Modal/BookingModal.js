@@ -32,9 +32,9 @@ class BookingModal extends Component {
 
   componentDidMount() {
     this.props.getGenders();
-    const { id } = this.props.match.params;
-    if (id) {
-      this.setState({ doctorId: id });
+    const { doctorId } = this.props;
+    if (doctorId) {
+      this.setState({ doctorId: doctorId });
     }
   }
 
@@ -150,6 +150,7 @@ class BookingModal extends Component {
       birthday,
       genders,
       selectedGender,
+      doctorId,
     } = this.state;
     return (
       <Modal
@@ -170,8 +171,11 @@ class BookingModal extends Component {
           <div className="booking-modal-body">
             <div className="doctor-infor">
               <ProfileDoctor
+                doctorId={doctorId}
                 isShowDescriptionDoctor={false}
                 dataTime={dataTime}
+                isShowLinkDetail={false}
+                isShowPrice={true}
               />
             </div>
             <div className="row">
