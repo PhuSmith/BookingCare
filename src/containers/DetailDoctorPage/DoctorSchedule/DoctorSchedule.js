@@ -22,11 +22,10 @@ class DoctorSchedule extends Component {
   }
 
   async componentDidMount() {
-    const { language } = this.props;
-    const { id } = this.props.match.params;
+    const { language, doctorId } = this.props;
     let allDays = this.getArrDays(language);
     if (allDays && allDays.length > 0) {
-      let res = await getScheduleDoctorsService(id, allDays[0].value);
+      let res = await getScheduleDoctorsService(doctorId, allDays[0].value);
       this.setState({
         allDays,
         allAvailableTime: res.data ? res.data : [],
@@ -81,9 +80,9 @@ class DoctorSchedule extends Component {
   }
 
   handleOnchangeSelect = async (e) => {
-    const { id } = this.props.match.params;
+    const { doctorId } = this.props;
     let date = e.target.value;
-    let res = await getScheduleDoctorsService(id, date);
+    let res = await getScheduleDoctorsService(doctorId, date);
     if (res && res.errCode === 0) {
       this.setState({
         allAvailableTime: res.data ? res.data : [],
@@ -175,6 +174,7 @@ class DoctorSchedule extends Component {
           isOpenModal={isOpenModalBooking}
           closeBookingModal={this.closeBookingModal}
           dataTime={dataScheduleTimeModal}
+          doctorId={this.props.doctorId}
         />
       </>
     );

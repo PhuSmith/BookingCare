@@ -19,8 +19,8 @@ class DoctorExtraInfor extends Component {
   }
 
   async componentDidMount() {
-    const { id } = this.props.match.params;
-    let res = await getExtraInforDoctorsService(id);
+    const { doctorId } = this.props;
+    let res = await getExtraInforDoctorsService(doctorId);
     if (res && res.errCode === 0) {
       this.setState({
         extraInfor: res.data,

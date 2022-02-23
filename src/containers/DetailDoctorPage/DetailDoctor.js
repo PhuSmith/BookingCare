@@ -41,10 +41,10 @@ class DetailDoctor extends Component {
           <div className="schedule-doctor container">
             <div className="row">
               <div className="content-left col-6">
-                <DoctorSchedule />
+                <DoctorSchedule doctorId={this.props.match.params.id} />
               </div>
               <div className="content-right col-6">
-                <DoctorExtraInfor />
+                <DoctorExtraInfor doctorId={this.props.match.params.id} />
               </div>
             </div>
           </div>
